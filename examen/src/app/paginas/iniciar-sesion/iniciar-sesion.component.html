@@ -1,28 +1,29 @@
- 
-    <section class="form-login">
-        <h5>Formulario Login</h5>
-        <input class="controls" type="text" name="usuario" value=""  placeholder="Usuario">
-        <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña">
-        <input class="buttons" type="submit" name="" value="Ingresar">
-        <p><a href="#">¿Olvidaste tu Contraseña?</a></p>
-    </section>
- 
-    <div class="flex flex-col max-w-72" >
-        <mat-form-field appearance="outline">
-            <mat-label>usuario</mat-label>
-            <input matInput  >  
-          </mat-form-field>
-      
-          <mat-form-field appearance="outline">
-              <mat-label>contraseña</mat-label>
-              <input matInput  >  
-            </mat-form-field> 
-            <button mat-flat-button color="primary">Iniciar Sesion</button>
-              
-    </div>
+<section class="form-login">
+  <h5>Formulario Login</h5>
+  <input class="controls" type="text" name="usuario" value="" placeholder="Usuario">
+  <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña">
+  <input class="buttons" type="submit" name="" value="Ingresar">
+  <p><a href="#">¿Olvidaste tu Contraseña?</a></p>
+</section>
+<div class="w-full flex justify-center">
+  <div class="flex flex-col w-80 max-w-80">
+
+      <mat-form-field appearance="outline">
+        <mat-label>usuario</mat-label>
+        <input matInput [formControl]="form.get('usuario')">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>contraseña</mat-label>
+        <input matInput [formControl]="form.get('password')">
+      </mat-form-field>
+
+    <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="guardar()">Iniciar Sesion</button>
+  </div>
+</div>
 
 
- 
 
- 
-<!-- <app-root></app-root> --> 
+
+
+<!-- <app-root></app-root> -->
