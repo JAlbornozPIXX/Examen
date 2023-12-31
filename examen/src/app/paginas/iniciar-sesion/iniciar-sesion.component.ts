@@ -4,11 +4,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.scss'
 })
@@ -17,15 +19,19 @@ export class IniciarSesionComponent implements OnInit {
   private formSuscripcion: Subscription = new Subscription(); // variable para guardar la suscripcion a los cambios del formulario
 
   form = this._formBuilder.group({
+
     usuario: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    password: ['', [Validators.required]] 
+    
   })
 
   constructor(
     private _formBuilder: FormBuilder
   ) { }
 
-
+  login(){
+    console.log(this.form.controls.usuario.value, this.form.controls.password.value);
+  }  
   ngOnInit(): void {
     //suscribirse a los cambios, no olvidar que todos los "subscribe" se tienen que desuscribir al no usar el componente
     this.formSuscripcion = //guardar la suscripcion en una variable para poder desuscribirse despues

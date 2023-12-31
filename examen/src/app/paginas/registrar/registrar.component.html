@@ -1,1 +1,23 @@
-<p>registrar works!</p>
+<div class="w-full flex justify-center h-full items-center">
+    <div class="flex flex-col w-80 max-w-80">
+        <h1>REGISTRAR USUARIO</h1>
+        <mat-form-field appearance="outline">
+          <mat-label>usuario</mat-label>
+          <input matInput [formControl]="form.get('usuario')">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>contraseña</mat-label>
+          <input matInput [formControl]="form.get('password')">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>confirmar contraseña</mat-label>
+            <input matInput [formControl]="form.get('ConfirmPassword')">
+        </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="guardar()">Registrarse</button>
+      <button mat-flat-button [routerLink]="['/Iniciar-Sesion']"  >Volver</button>
+    </div>
+  </div>
+
