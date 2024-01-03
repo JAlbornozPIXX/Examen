@@ -5,16 +5,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, RouterModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, RouterModule, MatIconModule],
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.scss'
 })
 export class IniciarSesionComponent implements OnInit {
+
+  hide = true;
 
   private formSuscripcion: Subscription = new Subscription(); // variable para guardar la suscripcion a los cambios del formulario
 
