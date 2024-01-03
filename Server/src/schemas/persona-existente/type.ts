@@ -1,6 +1,6 @@
 import { Field, ID, InputType, Int, ObjectType } from "type-graphql";
-import { Id_cargo } from "../Id_cargo/type";
-import { MaxLength, Min } from "class-validator";
+import { cargo } from "../cargo/type";
+import { MaxLength } from "class-validator";
 
 
 
@@ -25,8 +25,8 @@ export class personal_existente {
     Fecha_modificacion: Date;
     @Field(type => ID,{nullable:true})
     User_id: string
-    @Field(type => Id_cargo,{nullable:true})
-    Id_cargo: Id_cargo
+    @Field(type => cargo,{nullable:true})
+    cargo: cargo
 }
 
 @InputType()
@@ -40,7 +40,7 @@ export class EntradaPersona{
     @Field()
     @MaxLength(30)
     Apellidos: string;
-    @Field(type => Int)
+    @Field(type => Int, {nullable:true})
     @MaxLength(8)
     RUN: number
     @Field()
@@ -49,37 +49,37 @@ export class EntradaPersona{
 }
 @InputType()
 export class EditarPersona{
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Alias: string;
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Nombres: string;
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Apellidos: string;
-    @Field(type => Int)
+    @Field(type => Int, {nullable:true})
     @MaxLength(8)
     RUN: number
-    @Field()
+    @Field({nullable:true})
     @MaxLength(1)
     Verificador: string;
 }
 @InputType()
 export class WherePersona{
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Alias: string;
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Nombres: string;
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Apellidos: string;
-    @Field(type => Int)
+    @Field(type => Int, {nullable:true})
     @MaxLength(8)
     RUN: number
-    @Field()
+    @Field({nullable:true})
     @MaxLength(1)
     Verificador: string;
 }

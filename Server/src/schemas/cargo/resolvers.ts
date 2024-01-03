@@ -1,38 +1,38 @@
 import { Arg, Ctx, Info, Query, Resolver, Mutation } from "type-graphql";
-import { EditarCargo, EntradaCargo, Id_cargo, whereId_cargo } from "./type";
+import { EditarCargo, EntradaCargo, cargo, wherecargo } from "./type";
 import { GraphQLContext } from "../../context";
 import { PrismaSelect } from "@paljs/plugins";
 
 
-@Resolver(Id_cargo)
-export class Id_cargoResolver {
+@Resolver(cargo)
+export class cargoResolver {
 
-    @Query(returns => [Id_cargo])
-    Id_cargo(
+    @Query(returns => [cargo])
+    cargo(
         @Ctx() { prisma }: GraphQLContext,
         @Info() info: any,
-        @Arg("where", { nullable: true }) where: whereId_cargo,
+        @Arg("where", { nullable: true }) where: wherecargo,
     ) {
         const selected = new PrismaSelect(info).value;
-        return prisma.id_cargo.findMany({
+        return prisma.cargo.findMany({
             ...selected,
             where: {
-                nombre: where?.nombre ? {
-                    contains: where.nombre,
+                Nombre: where?.Nombre ? {
+                    contains: where.Nombre,
                     mode: "insensitive"
                 } : {},
             }
         })
     }
 
-    @Query(returns => [Id_cargo])
-    Id_cargoByID(
+    @Query(returns => [cargo])
+    cargoByID(
         @Ctx() { prisma }: GraphQLContext,
         @Arg("id", { nullable: false }) id: string,
         @Info() info: any,
     ) {
         const selected = new PrismaSelect(info).value;
-        return prisma.id_cargo.findUnique({
+        return prisma.cargo.findUnique({
             where: {
                 id
             },
@@ -40,27 +40,27 @@ export class Id_cargoResolver {
         })
     }
 
-    @Mutation(returns => Id_cargo)
-    AddId_cargo(
+    @Mutation(returns => cargo)
+    Addcargo(
         @Ctx() { prisma }: GraphQLContext,
-        @Arg("EntradaCargo") InputId_cargo: EntradaCargo,
+        @Arg("EntradaCargo") Inputcargo: EntradaCargo,
         @Info() info: any,
     ) {
         const selected = new PrismaSelect(info).value;
-        return prisma.id_cargo.create({
+        return prisma.cargo.create({
             ...selected,
             date: EntradaCargo
         })
     }
 
-    @Mutation(returns => Id_cargo)
-    EditarId_cargo(
+    @Mutation(returns => cargo)
+    Editarcargo(
         @Ctx() { prisma }: GraphQLContext,
         @Arg("id") id: string,
         @Arg("EditarCargo") InputEditarCargo: EditarCargo,
         @Info() info: any
     ) {
-        return prisma.id_cargo.update({
+        return prisma.cargo.update({
             where: {
                 id
             },
@@ -68,13 +68,13 @@ export class Id_cargoResolver {
         })
     }
 
-    @Mutation(returns => Id_cargo)
-    EliminarId_cargo(
+    @Mutation(returns => cargo)
+    Eliminarcargo(
         @Ctx() { prisma }: GraphQLContext,
         @Arg("id") id: string,
         @Info() info: any
     ) {
-        return prisma.id_cargo.delete({
+        return prisma.cargo.delete({
             where: {
                 id
             }
