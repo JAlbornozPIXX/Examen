@@ -5,9 +5,9 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { APOLLO_OPTIONS, Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { InMemoryCache } from '@apollo/client/core';
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideAnimations(),
+    provideHttpClient(),
     {
       provide: APOLLO_OPTIONS,
       useFactory(httpLink: HttpLink) {
@@ -27,5 +28,6 @@ export const appConfig: ApplicationConfig = {
       },
       deps: [HttpLink],
     },
+    Apollo
   ]
 };

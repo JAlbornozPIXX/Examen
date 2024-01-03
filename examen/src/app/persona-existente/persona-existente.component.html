@@ -20,4 +20,27 @@
     <span class="font-sans">Personal Existente</span>
     <span class="espacio"></span>
   </mat-toolbar>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Nombres</th>
+        <th>Apellido</th>
+        <th>Rut</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(dato of datos; track dato.id){
+      <tr>
+        <td>{{dato.Nombres + ' ' + dato.Apellidos}}</td>
+        <td>{{dato.Nombres}}</td>
+        <td>{{dato.Apellidos}}</td>
+        <td>{{dato.RUN + '-' + dato.Verificador}}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+
 </div>

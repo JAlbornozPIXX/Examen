@@ -1,5 +1,5 @@
 import { Field, ID, InputType, ObjectType } from "type-graphql";
-import { persona_existente } from "../persona-existente/type";
+import { personal_existente } from "../persona-existente/type";
 import { MaxLength, maxLength } from "class-validator";
 
 
@@ -11,8 +11,8 @@ export class Id_cargo{
     nombre: string;
     @Field()
     created_at: Date;
-    @Field(type => [persona_existente])
-    persona_existente: persona_existente[]
+    @Field(type => [personal_existente])
+    persona_existente: personal_existente[]
 }
 
 @InputType()

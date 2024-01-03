@@ -3,11 +3,11 @@ import { createServer } from 'http'
 import { createYoga } from 'graphql-yoga'
 import { buildSchema } from "type-graphql"; 
 import { resolvers} from "./schema"
-import { createContext } from "./context";
-
-
+import { createContext } from "./context"; 
  
 async function main() {
+
+  
   const schema = await buildSchema({
       resolvers,
     });
@@ -24,6 +24,7 @@ async function main() {
   })
 }
 
+ 
 main()
 
 

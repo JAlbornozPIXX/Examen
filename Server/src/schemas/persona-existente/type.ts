@@ -6,26 +6,26 @@ import { MaxLength, Min } from "class-validator";
 
 
 @ObjectType()
-export class persona_existente {
+export class personal_existente {
     @Field(type => ID)
     id: string;
-    @Field()
+    @Field({nullable:true})
     created_at: Date;
-    @Field()
+    @Field({nullable:true})
     Alias: string;
-    @Field()
+    @Field({nullable:true})
     Nombres: string;
-    @Field()
+    @Field({nullable:true})
     Apellidos: string;
-    @Field(type => Int)
+    @Field(type => Int,{nullable:true})
     RUN: number;
-    @Field()
+    @Field({nullable:true})
     Verificador: string;
-    @Field()
+    @Field({nullable:true})
     Fecha_modificacion: Date;
-    @Field(type => ID)
+    @Field(type => ID,{nullable:true})
     User_id: string
-    @Field(type => Id_cargo)
+    @Field(type => Id_cargo,{nullable:true})
     Id_cargo: Id_cargo
 }
 

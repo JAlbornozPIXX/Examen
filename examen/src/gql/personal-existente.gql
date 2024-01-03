@@ -1,0 +1,12 @@
+query ListaPersonalExistente {
+  personalExistente {
+    id
+    created_at
+    Verificador
+    User_id
+    RUN
+    Nombres
+    Apellidos
+    Fecha_modificacion
+  }
+}
