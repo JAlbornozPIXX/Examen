@@ -20,56 +20,42 @@ export type Scalars = {
 };
 
 export type EditarCargo = {
-  nombre?: InputMaybe<Scalars['String']['input']>;
+  Nombre?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EditarPersona = {
-  Alias: Scalars['String']['input'];
-  Apellidos: Scalars['String']['input'];
-  Nombres: Scalars['String']['input'];
-  RUN: Scalars['Int']['input'];
-  Verificador: Scalars['String']['input'];
+  Alias?: InputMaybe<Scalars['String']['input']>;
+  Apellidos?: InputMaybe<Scalars['String']['input']>;
+  Nombres?: InputMaybe<Scalars['String']['input']>;
+  RUN?: InputMaybe<Scalars['Int']['input']>;
+  Verificador?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EntradaCargo = {
-  nombre: Scalars['String']['input'];
+  Nombre: Scalars['String']['input'];
 };
 
 export type EntradaPersona = {
   Alias: Scalars['String']['input'];
   Apellidos: Scalars['String']['input'];
   Nombres: Scalars['String']['input'];
-  RUN: Scalars['Int']['input'];
+  RUN?: InputMaybe<Scalars['Int']['input']>;
   Verificador: Scalars['String']['input'];
-};
-
-export type Id_Cargo = {
-  __typename?: 'Id_cargo';
-  created_at: Scalars['DateTimeISO']['output'];
-  id: Scalars['ID']['output'];
-  nombre: Scalars['String']['output'];
-  persona_existente: Array<Personal_Existente>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  AddId_cargo: Id_Cargo;
-  EditarId_cargo: Id_Cargo;
+  Addcargo: Cargo;
   EditarPersonal: Personal_Existente;
-  EliminarId_cargo: Id_Cargo;
+  Editarcargo: Cargo;
   EliminarPersonal: Personal_Existente;
+  Eliminarcargo: Cargo;
   NuevoPersonal: Personal_Existente;
 };
 
 
-export type MutationAddId_CargoArgs = {
+export type MutationAddcargoArgs = {
   EntradaCargo: EntradaCargo;
-};
-
-
-export type MutationEditarId_CargoArgs = {
-  EditarCargo: EditarCargo;
-  id: Scalars['String']['input'];
 };
 
 
@@ -79,12 +65,18 @@ export type MutationEditarPersonalArgs = {
 };
 
 
-export type MutationEliminarId_CargoArgs = {
+export type MutationEditarcargoArgs = {
+  EditarCargo: EditarCargo;
   id: Scalars['String']['input'];
 };
 
 
 export type MutationEliminarPersonalArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type MutationEliminarcargoArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -95,19 +87,19 @@ export type MutationNuevoPersonalArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  Id_cargo: Array<Id_Cargo>;
-  Id_cargoByID: Array<Id_Cargo>;
+  cargo: Array<Cargo>;
+  cargoByID: Array<Cargo>;
   personalExistente: Array<Personal_Existente>;
   personalExistenteByID: Personal_Existente;
 };
 
 
-export type QueryId_CargoArgs = {
-  where?: InputMaybe<WhereId_Cargo>;
+export type QueryCargoArgs = {
+  where?: InputMaybe<Wherecargo>;
 };
 
 
-export type QueryId_CargoByIdArgs = {
+export type QueryCargoByIdArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -122,11 +114,19 @@ export type QueryPersonalExistenteByIdArgs = {
 };
 
 export type WherePersona = {
-  Alias: Scalars['String']['input'];
-  Apellidos: Scalars['String']['input'];
-  Nombres: Scalars['String']['input'];
-  RUN: Scalars['Int']['input'];
-  Verificador: Scalars['String']['input'];
+  Alias?: InputMaybe<Scalars['String']['input']>;
+  Apellidos?: InputMaybe<Scalars['String']['input']>;
+  Nombres?: InputMaybe<Scalars['String']['input']>;
+  RUN?: InputMaybe<Scalars['Int']['input']>;
+  Verificador?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Cargo = {
+  __typename?: 'cargo';
+  Nombre?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['DateTimeISO']['output']>;
+  id: Scalars['ID']['output'];
+  persona_existente?: Maybe<Array<Personal_Existente>>;
 };
 
 export type Personal_Existente = {
@@ -134,17 +134,17 @@ export type Personal_Existente = {
   Alias?: Maybe<Scalars['String']['output']>;
   Apellidos?: Maybe<Scalars['String']['output']>;
   Fecha_modificacion?: Maybe<Scalars['DateTimeISO']['output']>;
-  Id_cargo?: Maybe<Id_Cargo>;
   Nombres?: Maybe<Scalars['String']['output']>;
   RUN?: Maybe<Scalars['Int']['output']>;
   User_id?: Maybe<Scalars['ID']['output']>;
   Verificador?: Maybe<Scalars['String']['output']>;
+  cargo?: Maybe<Cargo>;
   created_at?: Maybe<Scalars['DateTimeISO']['output']>;
   id: Scalars['ID']['output'];
 };
 
-export type WhereId_Cargo = {
-  nombre?: InputMaybe<Scalars['String']['input']>;
+export type Wherecargo = {
+  Nombre?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ListaPersonalExistenteQueryVariables = Exact<{ [key: string]: never; }>;

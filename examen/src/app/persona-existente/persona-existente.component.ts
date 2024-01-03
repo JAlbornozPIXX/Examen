@@ -18,9 +18,7 @@ export class PersonaExistenteComponent implements OnInit {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   datos: any = [];
-
-  queryRef = this._listaPersonalExistenteGQL.watch().valueChanges;
-
+ 
   private querySubscription: Subscription = new Subscription();
 
   private variables$ = new Subject<{ id: string; }>();
