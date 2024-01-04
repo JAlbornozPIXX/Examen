@@ -10,3 +10,15 @@ query ListaPersonalExistente {
     Fecha_modificacion
   }
 }
+
+mutation MyMutation($EntradaPersonas: EntradaPersona = {Alias: "", Nombres: "", Apellidos: "", Verificador: "", RUN: 10}) {
+  NuevoPersonal(EntradaPersonas: $EntradaPersonas) {
+    Alias
+    Apellidos
+    Fecha_modificacion
+    Nombres
+    RUN
+    User_id
+    Verificador
+  }
+}
