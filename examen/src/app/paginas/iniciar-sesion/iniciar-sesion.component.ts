@@ -31,14 +31,14 @@ export class IniciarSesionComponent implements OnInit {
   private formSuscripcion: Subscription = new Subscription(); // variable para guardar la suscripcion a los cambios del formulario
 
   form = this._formBuilder.group({
-    usuario: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    usuario: ['admin@admin.com', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required]],
   });
 
   errorMessage: string;
   constructor(
     private _authService: AuthService,
-    private _formBuilder: FormBuilder, 
+    private _formBuilder: FormBuilder,
     private _router: Router
   ) {}
 
