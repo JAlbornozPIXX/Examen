@@ -5,7 +5,7 @@ import { RegistrarComponent } from './paginas/registrar/registrar.component';
 import { PersonaExistenteComponent } from './persona-existente/persona-existente.component';
 
 export const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'persona-existente' },
+    { path: '', pathMatch: 'full', redirectTo: 'iniciar-sesion' },
     {
         path: '',
         component: AppComponent,

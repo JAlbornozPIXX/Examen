@@ -6,6 +6,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { EMPTY, Subject, Subscription, switchMap, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ListaPersonalExistenteGQL } from '../../../graphql/generated';
+import { Router } from '@angular/router';
+import { AuthService } from '../servicios/auth.service';
 
 @Component({
   selector: 'app-persona-existente',
@@ -25,8 +27,20 @@ export class PersonaExistenteComponent implements OnInit {
 
   constructor(
     private _listaPersonalExistenteGQL: ListaPersonalExistenteGQL,
+    private _authService: AuthService, 
+    private _router: Router
   ) { }
 
+
+  async cerrarSesion() {
+    const { error } = await this._authService.cerrarSesion();
+    if (error) {
+      alert("Error al cerrar sesion");
+      return;
+    }
+    this._router.navigate(['/iniciar-sesion']);
+  }
+  
   ngOnInit(): void {
     this._listaPersonalExistenteGQL.watch().valueChanges.pipe(
       takeUntil(this._unsubscribeAll)
