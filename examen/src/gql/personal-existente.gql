@@ -11,7 +11,8 @@ query ListaPersonalExistente {
   }
 }
 
-mutation MyMutation($EntradaPersonas: EntradaPersona = {Alias: "", Nombres: "", Apellidos: "", Verificador: "", RUN: 10}) {
+
+mutation NuevoPersonalExistente($EntradaPersonas: EntradaPersona = {Alias: "", Nombres: "", Apellidos: "", Verificador: "", RUN: 10}) {
   NuevoPersonal(EntradaPersonas: $EntradaPersonas) {
     Alias
     Apellidos

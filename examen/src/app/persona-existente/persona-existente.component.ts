@@ -108,4 +108,9 @@ export class PersonaExistenteComponent implements OnInit {
     this._unsubscribeAll.next(null);
     this._unsubscribeAll.complete();
   }
+
+  entradaPersonalExistente() {
+    
+  }
+
 }

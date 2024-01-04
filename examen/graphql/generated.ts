@@ -152,6 +152,13 @@ export type ListaPersonalExistenteQueryVariables = Exact<{ [key: string]: never;
 
 export type ListaPersonalExistenteQuery = { __typename?: 'Query', personalExistente: Array<{ __typename?: 'personal_existente', id: string, created_at?: any | null, Verificador?: string | null, User_id?: string | null, RUN?: number | null, Nombres?: string | null, Apellidos?: string | null, Fecha_modificacion?: any | null }> };
 
+export type NuevoPersonalExistenteMutationVariables = Exact<{
+  EntradaPersonas?: InputMaybe<EntradaPersona>;
+}>;
+
+
+export type NuevoPersonalExistenteMutation = { __typename?: 'Mutation', NuevoPersonal: { __typename?: 'personal_existente', Alias?: string | null, Apellidos?: string | null, Fecha_modificacion?: any | null, Nombres?: string | null, RUN?: number | null, User_id?: string | null, Verificador?: string | null } };
+
 export const ListaPersonalExistenteDocument = gql`
     query ListaPersonalExistente {
   personalExistente {
@@ -172,6 +179,30 @@ export const ListaPersonalExistenteDocument = gql`
   })
   export class ListaPersonalExistenteGQL extends Apollo.Query<ListaPersonalExistenteQuery, ListaPersonalExistenteQueryVariables> {
     document = ListaPersonalExistenteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const NuevoPersonalExistenteDocument = gql`
+    mutation NuevoPersonalExistente($EntradaPersonas: EntradaPersona = {Alias: "", Nombres: "", Apellidos: "", Verificador: "", RUN: 10}) {
+  NuevoPersonal(EntradaPersonas: $EntradaPersonas) {
+    Alias
+    Apellidos
+    Fecha_modificacion
+    Nombres
+    RUN
+    User_id
+    Verificador
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class NuevoPersonalExistenteGQL extends Apollo.Mutation<NuevoPersonalExistenteMutation, NuevoPersonalExistenteMutationVariables> {
+    document = NuevoPersonalExistenteDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
