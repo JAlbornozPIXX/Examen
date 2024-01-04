@@ -2,10 +2,6 @@
 <mat-dialog-content class="mat-typography">
 <div class="flex flex-col w-80 max-w-80">
     <form class="example-form">
-        <mat-form-field class="max-w-60">
-          <mat-label>Alias</mat-label>
-          <input matInput [formControl]="form.get('Alias')">
-        </mat-form-field>
         <mat-form-field class="max-w-60 ">
             <mat-label>Nombres</mat-label>
             <input matInput [formControl]="form.get('Nombres')">
@@ -28,6 +24,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="entradaPersonalExistente()">Aceptar</button>
 </mat-dialog-actions>
 
