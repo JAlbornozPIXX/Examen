@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { IniciarSesionComponent } from './paginas/iniciar-sesion/iniciar-sesion.component';
 import { RegistrarComponent } from './paginas/registrar/registrar.component';
 import { PersonaExistenteComponent } from './persona-existente/persona-existente.component';
+import { DashboardComponent } from './paginas/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'iniciar-sesion' },
@@ -12,7 +13,8 @@ export const routes: Routes = [
         children: [
             { path: 'iniciar-sesion', component:IniciarSesionComponent },
             { path: 'registrar', component: RegistrarComponent },
-            { path: 'persona-existente', component:PersonaExistenteComponent }
+            { path: 'persona-existente', component:PersonaExistenteComponent },
+            { path: 'dashboard', component:DashboardComponent}
         ]
     }
 ];
