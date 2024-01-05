@@ -49,7 +49,7 @@ export class cargoResolver {
         const selected = new PrismaSelect(info).value;
         return prisma.cargo.create({
             ...selected,
-            date: EntradaCargo
+            data: Inputcargo
         })
     }
 

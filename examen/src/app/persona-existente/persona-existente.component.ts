@@ -9,7 +9,7 @@ import { ListaPersonalExistenteGQL } from '../../../graphql/generated';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { MatTableModule } from '@angular/material/table';
-import {MatDialogModule, MatDialog} from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../paginas/dialog/dialog.component';
 import { AdministradorCargosComponent } from '../paginas/administrador-cargos/administrador-cargos.component';
 
@@ -43,7 +43,7 @@ export class PersonaExistenteComponent implements OnInit {
     private _authService: AuthService,
     private _router: Router,
     public dialog: MatDialog,
-  ) {}
+  ) { }
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent);
@@ -52,7 +52,7 @@ export class PersonaExistenteComponent implements OnInit {
     });
   }
 
-  async dashboard(){
+  async dashboard() {
     this._router.navigate(['/dashboard']);
   }
 

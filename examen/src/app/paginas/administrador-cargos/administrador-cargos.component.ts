@@ -1,43 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { PersonaExistenteService } from '../../servicios/persona-existente.service';
-import {MatSelectModule} from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { NuevoCargoGQL } from '../../../../graphql/generated';
+import { NombreCargosGQL, NuevoCargoGQL } from '../../../../graphql/generated';
+import { CargoService } from '../../servicios/cargo.service';
+import { EMPTY, Subject, Subscription, switchMap, takeUntil } from 'rxjs';
+import { empty } from '@apollo/client';
 
 @Component({
   selector: 'app-administrador-cargos',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatSelectModule, MatTableModule],
+  imports: [MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatTableModule],
   templateUrl: './administrador-cargos.component.html',
   styleUrl: './administrador-cargos.component.scss'
 })
-export class AdministradorCargosComponent {
+export class AdministradorCargosComponent implements OnInit{
   datos: any = [];
-  displayedColumns = ['Nombres'];
-  
+  displayedColumns = ['Nombre'];
+  private querySusbscription: Subscription = new Subscription(); //Ya que utilizo la suscripción por switchmap no lo utilice, pero lo dejo por si a caso
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
+  private variables$ = new Subject<{ id: string }>();
+
+
   form = this._formBuilder.group({
-    Nombres: ['', [Validators.required]],
-    Apellidos: ['', [Validators.required]],
-    RUN: ['', [Validators.required]],
-    Verificador: ['', [Validators.required]],
+    Nombre: ['', [Validators.required]]
   });
   constructor(
     private _formBuilder: FormBuilder,
+    private _CargoService: CargoService,
+    private _nombreCargosGQL: NombreCargosGQL
 
   ) { }
   ngOnInit(): void {
-
+    this._nombreCargosGQL
+      .watch()
+      .valueChanges.pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(({ data }) => {
+        this.datos = data?.cargo;
+      });
+    this.buscarSeleccionadoSwitchmap();
   }
 
-  async entradaPersonalExistente() {
-    const { Nombres, Apellidos, Verificador, RUN } = this.form.value;
-    await this._personaExistenteService.nuevoPersonalExistente(Nombres+" "+Apellidos, Nombres, Apellidos, Verificador, parseInt(RUN))
-    .then((data) => { console.log(data); })
-    .catch((error) => { console.log(error); });
-    
+  buscarSeleccionadoSwitchmap() {
+    this.variables$
+      .pipe(
+        switchMap((data) => {
+          if (!data) return EMPTY;
+          return this._nombreCargosGQL.watch().valueChanges;
+        }),
+        takeUntil(this._unsubscribeAll)
+      )
+      .subscribe(({ data }) => {
+        console.log(data);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next(null);
+    this._unsubscribeAll.complete();
+  }
+
+  async entradaNuevoCargo() {
+    await this._CargoService.nuevoCargo(this.form.value.Nombre)
+      .then((data) => { console.log(data); })
+      .catch((error) => { console.log(error); });
+
   }
 }
