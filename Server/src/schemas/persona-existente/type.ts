@@ -31,7 +31,7 @@ export class personal_existente {
 
 @InputType()
 export class EntradaPersona{
-    @Field()
+    @Field({nullable:true})
     @MaxLength(30)
     Alias: string;
     @Field()

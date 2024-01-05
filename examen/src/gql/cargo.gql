@@ -1,0 +1,12 @@
+query NombreCargos{
+  cargo {
+    Nombre
+    id
+  }
+}
+
+mutation NuevoCargo($Nombre: String = "") {
+  Addcargo(EntradaCargo: {Nombre: $Nombre}) {
+    Nombre
+  }
+}

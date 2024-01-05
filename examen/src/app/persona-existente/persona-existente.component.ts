@@ -11,6 +11,7 @@ import { AuthService } from '../servicios/auth.service';
 import { MatTableModule } from '@angular/material/table';
 import {MatDialogModule, MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../paginas/dialog/dialog.component';
+import { AdministradorCargosComponent } from '../paginas/administrador-cargos/administrador-cargos.component';
 
 @Component({
   selector: 'app-persona-existente',
@@ -54,6 +55,14 @@ export class PersonaExistenteComponent implements OnInit {
   async dashboard(){
     this._router.navigate(['/dashboard']);
   }
+
+  openCargos() {
+    const dialogRef = this.dialog.open(AdministradorCargosComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
   async cerrarSesion() {
     const { error } = await this._authService.cerrarSesion();

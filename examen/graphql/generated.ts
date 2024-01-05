@@ -36,7 +36,7 @@ export type EntradaCargo = {
 };
 
 export type EntradaPersona = {
-  Alias: Scalars['String']['input'];
+  Alias?: InputMaybe<Scalars['String']['input']>;
   Apellidos: Scalars['String']['input'];
   Nombres: Scalars['String']['input'];
   RUN?: InputMaybe<Scalars['Int']['input']>;
@@ -147,6 +147,18 @@ export type Wherecargo = {
   Nombre?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type NombreCargosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NombreCargosQuery = { __typename?: 'Query', cargo: Array<{ __typename?: 'cargo', Nombre?: string | null, id: string }> };
+
+export type NuevoCargoMutationVariables = Exact<{
+  Nombre?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type NuevoCargoMutation = { __typename?: 'Mutation', Addcargo: { __typename?: 'cargo', Nombre?: string | null } };
+
 export type ListaPersonalExistenteQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -159,6 +171,43 @@ export type NuevoPersonalExistenteMutationVariables = Exact<{
 
 export type NuevoPersonalExistenteMutation = { __typename?: 'Mutation', NuevoPersonal: { __typename?: 'personal_existente', Alias?: string | null, Apellidos?: string | null, Fecha_modificacion?: any | null, Nombres?: string | null, RUN?: number | null, User_id?: string | null, Verificador?: string | null } };
 
+export const NombreCargosDocument = gql`
+    query NombreCargos {
+  cargo {
+    Nombre
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class NombreCargosGQL extends Apollo.Query<NombreCargosQuery, NombreCargosQueryVariables> {
+    document = NombreCargosDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const NuevoCargoDocument = gql`
+    mutation NuevoCargo($Nombre: String = "") {
+  Addcargo(EntradaCargo: {Nombre: $Nombre}) {
+    Nombre
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class NuevoCargoGQL extends Apollo.Mutation<NuevoCargoMutation, NuevoCargoMutationVariables> {
+    document = NuevoCargoDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const ListaPersonalExistenteDocument = gql`
     query ListaPersonalExistente {
   personalExistente {
