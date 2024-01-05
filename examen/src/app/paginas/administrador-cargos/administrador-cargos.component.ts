@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PersonaExistenteService } from '../../servicios/persona-existente.service';
 import {MatSelectModule} from '@angular/material/select'; 
 import { MatTableModule } from '@angular/material/table';
+import { NuevoCargoGQL } from '../../../../graphql/generated';
 
 @Component({
   selector: 'app-administrador-cargos',
@@ -24,21 +25,13 @@ export class AdministradorCargosComponent {
     RUN: ['', [Validators.required]],
     Verificador: ['', [Validators.required]],
   });
-
-  ngOnInit(): void {
-    this._listaPersonalExistenteGQL
-      .watch()
-      .valueChanges.pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(({ data }) => {
-        this.datos = data?.personalExistente;
-      });
-
-    this.buscarSeleccionadoSwitchmap();
-  }
   constructor(
     private _formBuilder: FormBuilder,
-    private _personaExistenteService: PersonaExistenteService
+
   ) { }
+  ngOnInit(): void {
+
+  }
 
   async entradaPersonalExistente() {
     const { Nombres, Apellidos, Verificador, RUN } = this.form.value;
