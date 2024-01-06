@@ -3,13 +3,12 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { PersonaExistenteService } from '../../servicios/persona-existente.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { NombreCargosGQL, NuevoCargoGQL } from '../../../../graphql/generated';
+import { NombreCargosGQL } from '../../../../graphql/generated';
 import { CargoService } from '../../servicios/cargo.service';
 import { EMPTY, Subject, Subscription, switchMap, takeUntil } from 'rxjs';
-import { empty } from '@apollo/client';
+
 
 @Component({
   selector: 'app-administrador-cargos',
